@@ -1,0 +1,166 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; 
+            background-image:url('math3.png');
+           
+        }
+
+        .game-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%; /* Adjusted width to fill more space */
+            max-width: 600px; /* Added max width for better responsiveness */
+        }
+
+        h1 {
+            font-size: 3rem; /* Enlarged title */
+            color: #0066cc;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        .score {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: green;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: rgb(101, 162, 249);
+        }
+
+        .back-button {
+            position: absolute;
+            top:0px;
+            left:80;/*hanged left value to push it more to the left */
+            background-color: #1d3b65;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background-color: #5264c8;
+        }
+        .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.4);
+      color: #003366;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    </style>
+</head>
+<body>
+    <a href="turshilt11.html" class="back-btn">Back</a>
+    <div class="game-container">
+        <h1>Math Game</h1>
+        <p>What is: <span id="number1"></span> + <span id="number2"></span>?</p>
+        <input type="number" id="answer" placeholder="Enter your answer">
+        <button onclick="checkAnswer()">Check</button>
+        <p class="result" id="result"></p>
+        <p class="score" id="score">Score: 0</p>
+    </div>
+
+    <script>
+        let num1, num2, score = 0, questionCount = 0;
+
+        function generateQuestion() {
+            // Difficulty increases with each question
+            num1 = Math.floor(Math.random() * (questionCount + 10)) + 1;
+            num2 = Math.floor(Math.random() * (questionCount + 10)) + 1;
+            document.getElementById("number1").textContent = num1;
+            document.getElementById("number2").textContent = num2;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("answer").value);
+            const correctAnswer = num1 + num2;
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result").textContent = "Correct!";
+                score++;
+            } else {
+                document.getElementById("result").textContent = "Wrong! Correct answer: " + correctAnswer;
+            }
+
+            questionCount++;
+
+            document.getElementById("score").textContent = "Score: " + score;
+
+            if (questionCount === 15) {
+                endGame();
+            } else {
+                document.getElementById("answer").value = "";
+                generateQuestion();
+            }
+        }
+
+        function endGame() {
+            document.getElementById("result").textContent = "Game over! Final score: " + score;
+            document.getElementById("score").textContent = "Final score: " + score;
+            document.querySelector("button").disabled = true; // Disable the 'Check' button
+        }
+
+        function goBack() {
+            // Functionality to go back (can be adjusted as needed)
+            alert("Going back to the previous page...");
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>

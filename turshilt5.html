@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Exam</title>
+  <style>
+    /* CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    h2 {
+      color: #444;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      text-align: center;
+      display: none;
+    }
+
+    #certificate {
+      margin-top: 20px;
+      padding: 30px;
+      background-color: #2d3e50;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      font-family: 'Georgia', serif;
+      text-align: center;
+      position: relative;
+    }
+
+    #certificate h3 {
+      font-size: 2em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    #certificate p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    #certificate::before {
+      font-size: 3em;
+      color: #ffffff;  /* Set color to white */
+      position: absolute;
+      top: 120%; /* Move the "Congratulations!" text down */
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Georgia', serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    /* New Style for the "Congratulations" section */
+    #congratulations {
+      text-align: center;
+      color: #FFD700;
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.4);
+      color: #003366;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+
+  </style>
+</head>
+<body>
+  <a href="turshilt10.html" class="back-btn">Back</a>
+  <div class="container">
+    <h1>Mathematics Exam</h1>
+
+    <form id="quiz-form">
+      <h2>Arithmetic</h2>
+      
+      <div class="question">
+        <label for="q1">1. ( 3x + 5 = 20 ). Find the value of ( x )</label>
+        <input type="number" id="q1" name="q1">
+      </div>
+
+      <div class="question">
+        <label for="q2">2. If 6 people plant 12 trees in 3 hours, how many trees will 18 people plant in 3 hours?</label>
+        <input type="number" id="q2" name="q2">
+      </div>
+
+      <div class="question">
+        <label for="q3">3. The length of your large screen is 24 inches, and the width is 18 inches. Find the diagonal length of the screen.</label>
+        <input type="number" id="q3" name="q3">
+      </div>
+
+      <h2>Algebra</h2>
+
+      <div class="question">
+        <label for="q4">1. Find the solution to the system of equations: ( 4x + 2y = 14 ) and ( 2x - y = 4 ).(use a graphic method)</label>
+        <input type="text" id="q4" name="q4">
+      </div>
+
+      <div class="question">
+        <label for="q5">2. Solve the equation ( 3(x + 2) = 4(x - 1) ).(Write answer like this x=N, y=M)</label>
+        <input type="text" id="q5" name="q5">
+      </div>
+
+      <div class="question">
+        <label for="q6">3. If ( y = 2x + 3 ), find the value of ( y ) when ( x = 5 ).(Write answer like this x=N)</label>
+        <input type="number" id="q6" name="q6">
+      </div>
+
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+
+    <div id="result">
+      <h2>Your Results</h2>
+      <p id="score"></p>
+      <p id="level"></p>
+      
+      <div id="certificate" style="display:none;">
+        <h3>Your Certificate:</h3>
+        <p>Your Name: <span id="name"></span></p>
+        <p>Level: <span id="certificate-level"></span></p>
+        <p>Mathematics Exam Certificate</p>
+      </div>
+
+      <div id="congratulations" style="display:none;">
+        Congratulations on completing the exam!
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript code
+    document.getElementById("quiz-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get answers
+      let q1 = parseInt(document.getElementById("q1").value);
+      let q2 = parseInt(document.getElementById("q2").value);
+      let q3 = parseInt(document.getElementById("q3").value);
+      let q4 = document.getElementById("q4").value.trim().toLowerCase();
+      let q5 = document.getElementById("q5").value.trim().toLowerCase();
+      let q6 = parseInt(document.getElementById("q6").value);
+
+      // Compare answers
+      let score = 0;
+
+      // Question 1
+      if (q1 === 5) score++;
+      // Question 2
+      if (q2 === 36) score++;
+      // Question 3
+      if (q3 === 30) score++;
+      // Question 4
+      if (q4 === "x=3, y=2") score++;
+      // Question 5
+      if (q5 === "x=10") score++;
+      // Question 6
+      if (q6 === 13) score++;
+
+      // Determine the level
+      let level = "";
+      if (score === 6) {
+        level = "Excellent performance!";
+      } else if (score >= 4) {
+        level = "Intermediate performance!";
+      } else {
+        level = "Beginner's stage.";
+      }
+
+      // Display the results
+      document.getElementById("score").innerText = `Your Score: ${score} / 6`;
+      document.getElementById("level").innerText = level;
+      document.getElementById("result").style.display = "block";
+
+      // Display the certificate
+      document.getElementById("certificate").style.display = "block";
+      document.getElementById("certificate-level").innerText = level;
+
+      // Show congratulations message
+      document.getElementById("congratulations").style.display = "block";
+
+      // Ask for the name
+      const name = prompt("Please enter your name:");
+      document.getElementById("name").innerText = name;
+    });
+  </script>
+</body>
+</html>
